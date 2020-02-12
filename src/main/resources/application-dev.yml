@@ -1,0 +1,22 @@
+db: kaiwei
+#add: 39.96.201.193
+add: localhost
+dbport: 3306
+spring:
+  profiles:
+    #    include: druid,mybatisplus
+    include: hikari,mybatisplus
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${add}:${dbport}/${db}?useUnicode=true&characterEncoding=UTF-8&useSSL=false&tinyIntlisBit=true&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=CONVERT_TO_NULL
+    #    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    #    url: jdbc:p6spy:mysql://${add}:${dbport}/${db}?useUnicode=true&characterEncoding=UTF-8&useSSL=false&tinyIntlisBit=true&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=CONVERT_TO_NULL
+    username: root
+    #    password: password
+    password: '@Zkd079413'
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5242880
+#mybatis-plus:
+#  type-handlers-package: com.miaoyidj.miniprogram.typehandler

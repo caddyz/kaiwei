@@ -17,6 +17,7 @@
     <properties>
         <java.version>1.8</java.version>
         <dockerfile-maven-version>1.4.13</dockerfile-maven-version>
+        <docker.image.prefix>kaiser</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -62,10 +63,15 @@
     </dependencies>
 
     <build>
+        <finalName>kaiwei</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.kaiwei.project.ProjectApplication</mainClass>
+                    <finalName>${project.build.finalName}</finalName>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.spotify</groupId>
@@ -81,10 +87,10 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <repository>spotify/foobar</repository>
+                    <repository>${docker.image.prefix}/${project.artifactId}</repository>
                     <tag>${project.version}</tag>
                     <buildArgs>
-                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
                     </buildArgs>
                 </configuration>
             </plugin>
